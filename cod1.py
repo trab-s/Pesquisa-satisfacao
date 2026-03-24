@@ -142,12 +142,12 @@ with col_img:
                 f"""
                 <div style="text-align:center;">
                     <div style="width:150px; height:130px; border-radius:50%; 
-                                background-image: url('data:image/jpeg;base64');
+                                background-image: url('data:image/jpeg;base64,{func['foto']}');
                                 background-size: cover; background-position: center;
                                 border: 3px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
                                 margin: 0 auto 5px;">
                     </div>
-                    <small style="font-weight:bold; color:#2E86AB;">{selecionado}</small>
+                    <small style="font-weight:bold; color:#2E86AB;"
                 </div>
                 """, 
                 unsafe_allow_html=True
