@@ -136,13 +136,23 @@ avatar_padrao = "https://identidade.senai.br/authenticationendpoint/extensions/l
 if selecionado == "Selecione":
     st.image(avatar_padrao, width=150)
 else:
-    if func["foto"]: # ← Se tem foto no banco
-        st.markdown(
-            f"""
-            <img src="data:image/png;base64,{func['foto']}" width="150" style="border-radius:50%">
-            """,
-            unsafe_allow_html=True
-        )
+    if func["foto"]:
+        try:
+            # VERSÃO ROBUSTA - funciona com qualquer foto
+            img_html = f"""
+            <div style="width: 160px; height: 160px; border-radius: 50%; 
+                        background-image: url('data:image/jpeg;base64,{func['foto']}');
+                        background-size: cover; background-position: center; 
+                        border: 4px solid #fff; 
+                        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+                        margin: 0 auto; display: block;">
+            </div>
+            """
+            st.markdown(img_html, unsafe_allow_html=True)
+            st.caption(f"👤 {func['cargo'] or 'Cargo não informado'}")
+        except Exception as e:
+            st.error(f"Erro na foto: {str(e)[:30]}")
+            st.image(avatar_padrao, width=150)
     else:
         st.image(avatar_padrao, width=150)
 
