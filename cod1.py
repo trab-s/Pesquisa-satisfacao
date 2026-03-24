@@ -143,8 +143,6 @@ else:
             """,
             unsafe_allow_html=True
         )
-    except:
-        st.image(avatar_padrao, width=150)
     else:
         st.image(avatar_padrao, width=150)
 
