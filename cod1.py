@@ -131,25 +131,22 @@ if not funcionarios.empty:
         if not func_filtrado.empty:
             func = func_filtrado.iloc[0]
 
-# EXATA LÓGICA DO CÓDIGO QUE FUNCIONAVA!
 avatar_padrao = "https://identidade.senai.br/authenticationendpoint/extensions/layouts/custom/assets/img/nai.png"
 
 if selecionado == "Selecione":
-    # Avatar padrão QUADRADO usando st.image() como no código que funcionava
     st.image(avatar_padrao, width=150)
 else:
-    # Funcionário selecionado
-    if func["foto"] and os.path.exists(func["foto"]):
-        # Foto do funcionário REDONDA usando get_base64() como no código que funcionava
-        img_base64 = get_base64(func["foto"])
-        st.markdown(
-            f"""
-            <img src="data:image/png;base64,{img_base64}" width="150" style="border-radius:50%">
-            """,
-            unsafe_allow_html=True
-        )
+    if func["foto"]: # ← Se tem foto no banco
+        try:
+            st.markdown(
+                f"""
+                <img src="data:image/png;base64,{func['foto']}" width="150" style="border-radius:50%">
+                """,
+                unsafe_allow_html=True
+            )
+        except:
+            st.image(avatar_padrao, width=150)
     else:
-        # Sem foto, avatar padrão QUADRADO
         st.image(avatar_padrao, width=150)
 
 # Formulário
