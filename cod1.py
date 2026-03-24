@@ -137,13 +137,12 @@ if selecionado == "Selecione":
     st.image(avatar_padrao, width=150)
 else:
     if func["foto"]: # ← Se tem foto no banco
-        try:
-            st.markdown(
-                f"""
-                <img src="data:image/png;base64,{func['foto']}" width="150" style="border-radius:50%">
-                """,
-                unsafe_allow_html=True
-            )
+        st.markdown(
+            f"""
+            <img src="data:image/png;base64,{func['foto']}" width="150" style="border-radius:50%">
+            """,
+            unsafe_allow_html=True
+        )
         except:
             st.image(avatar_padrao, width=150)
     else:
