@@ -61,10 +61,14 @@ def salvar_avaliacao(funcionario_id, nota1, nota2, nota3, nota4, nota5, obs):
 
 def get_base64(bin_file):
     try:
+        if not os.path.exists(bin_file):
+            st.error(f"Foto não encontrada: {bin_file}") # ← ADICIONE ESTA LINHA
+            return None
         with open(bin_file, 'rb') as f:
             data = f.read()
         return base64.b64encode(data).decode()
-    except:
+    except Exception as e: # ← MELHORE O EXCEPT
+        st.error(f"Erro ao carregar foto {bin_file}: {str(e)[:50]}") # ← ADICIONE ESTA LINHA
         return None
 
 def set_background(png_file):
