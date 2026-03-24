@@ -132,29 +132,28 @@ if not funcionarios.empty:
             func = func_filtrado.iloc[0]
 
 avatar_padrao = "https://identidade.senai.br/authenticationendpoint/extensions/layouts/custom/assets/img/nai.png"
-
-if selecionado == "Selecione":
-    st.image(avatar_padrao, width=150)
-else:
-    if func["foto"]:
-        try:
-            # VERSÃO ROBUSTA - funciona com qualquer foto
-            img_html = f"""
-            <div style="width: 160px; height: 160px; border-radius: 50%; 
-                        background-image: url('data:image/jpeg;base64,{func['foto']}');
-                        background-size: cover; background-position: center; 
-                        border: 4px solid #fff; 
-                        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-                        margin: 0 auto; display: block;">
-            </div>
-            """
-            st.markdown(img_html, unsafe_allow_html=True)
-            st.caption(f"👤 {func['cargo'] or 'Cargo não informado'}")
-        except Exception as e:
-            st.error(f"Erro na foto: {str(e)[:30]}")
-            st.image(avatar_padrao, width=150)
+col_img, col_vazio = st.columns([1,3])
+with col_img:
+    if selecionado == "Selecione":
+        st.image(avatar_padrao, width=130)
     else:
-        st.image(avatar_padrao, width=150)
+        if func["foto"]:
+            st.markdown(
+                f"""
+                <div style="text-align:center;">
+                    <div style="width:130px; height:130px; border-radius:50%; 
+                                background-image: url('data:image/jpeg;base64,{func['foto']}');
+                                background-size: cover; background-position: center;
+                                border: 3px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                                margin: 0 auto 5px;">
+                    </div>
+                    <small style="font-weight:bold; color:#2E86AB;">{selecionado}</small>
+                </div>
+                """, 
+                unsafe_allow_html=True
+            )
+        else:
+            st.image(avatar_padrao, width=130)
 # Formulário
 st.markdown("""
 <style>
