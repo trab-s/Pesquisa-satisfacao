@@ -135,16 +135,16 @@ avatar_padrao = "https://identidade.senai.br/authenticationendpoint/extensions/l
 col_img, col_vazio = st.columns([1,3])
 with col_img:
     if selecionado == "Selecione":
-        st.image(avatar_padrao, width=130)
+        st.image(avatar_padrao, width=150)
     else:
         if func["foto"]:
             st.markdown(
                 f"""
                 <div style="text-align:center;">
-                    <div style="width:130px; height:130px; border-radius:50%; 
+                    <div style="width:150px; height:130px; border-radius:50%; 
                                 background-image: url('data:image/jpeg;base64,{func['foto']}');
                                 background-size: cover; background-position: center;
-                                border: 3px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
                                 margin: 0 auto 5px;">
                     </div>
                     <small style="font-weight:bold; color:#2E86AB;">{selecionado}</small>
@@ -153,7 +153,7 @@ with col_img:
                 unsafe_allow_html=True
             )
         else:
-            st.image(avatar_padrao, width=130)
+            st.image(avatar_padrao, width=150)
 # Formulário
 st.markdown("""
 <style>
